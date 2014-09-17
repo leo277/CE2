@@ -26,8 +26,7 @@ public class TextBuddy {
 	private static final String ERROR_INVALID_ARGUMENT = "Invalid arguement";
 	private static TextManager manager = null;
 	private static Scanner scanner = new Scanner(System.in);
-	
-	
+
 	public static void main(String[] args) {
 		try {
 			checkArgumentValidity(args);
@@ -72,7 +71,10 @@ public class TextBuddy {
 
 		case "clear":
 			return manager.clearFile();
-			
+
+		case "sort":
+			return manager.sortByAlphabet();
+
 		case "exit":
 			manager.exit();
 

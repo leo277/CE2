@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 class TextManager {
 
 	private static final String EMPTY_MESSAGE = "%1$s is empty";
@@ -15,15 +14,15 @@ class TextManager {
 	private static final String CLEAR_MESSAGE = "all content deleted from %1$s";
 	private static final String INVALID_DELETE_MESSAGE = "cannot delete such element";
 	private static final String DELETE_MESSAGE = "deleted from %1$s: \"%2$s\"";
-
+	private static final String SORTED_MESSAGE = "%1$s is sorted in alphabetical order";
+	private static final String NOT_SORTED_MESSAGE = "cannot sort %1$s because it is empty";
 
 	private File textFile = null;
 	private String fileName = null;
 	private ArrayList<String> tasks = new ArrayList<String>();
 
 	// constructor
-	
-	
+
 	public TextManager(String rawFileName) throws IOException {
 		fileName = rawFileName;
 		textFile = new File(fileName);
@@ -46,8 +45,6 @@ class TextManager {
 		return this.fileName;
 	}
 
-	
-	
 	// public methods
 	public String add(String content) throws IOException {
 		if (!content.isEmpty()) {
@@ -69,7 +66,7 @@ class TextManager {
 			return (String.format(EMPTY_MESSAGE, getFileName()));
 		}
 		for (int i = 0; i < tasks.size(); i++) {
-			content += ((i + 1) + ". " + tasks.get(i)+"\n");
+			content += ((i + 1) + ". " + tasks.get(i) + "\n");
 		}
 		return content.trim();
 	}
@@ -93,6 +90,14 @@ class TextManager {
 		return (String.format(DELETE_MESSAGE, getFileName(), strDeleted));
 	}
 
+	public String sortByAlphabet() throws IOException {
+		if (tasks.isEmpty()) {
+			return (String.format(NOT_SORTED_MESSAGE, getFileName()));
+		}
+
+		saveToFile();
+		return (String.format(SORTED_MESSAGE, getFileName()));
+	}
 
 	public void saveToFile() throws IOException {
 		BufferedWriter writer = new BufferedWriter(

@@ -75,6 +75,9 @@ public class TextBuddy {
 		case "sort":
 			return manager.sortByAlphabet();
 
+		case "search":
+			return manager.search(content);
+
 		case "exit":
 			manager.exit();
 

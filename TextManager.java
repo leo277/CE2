@@ -17,7 +17,9 @@ class TextManager {
 	private static final String DELETE_MESSAGE = "deleted from %1$s: \"%2$s\"";
 	private static final String SORTED_MESSAGE = "%1$s is sorted in alphabetical order";
 	private static final String NOT_SORTED_MESSAGE = "cannot sort %1$s because it is empty";
-
+	private static final String NOT_FOUND_MESSAGE = "cannot find such content";
+	private static final String FOUND_MESSAGE = "\"%1$s\" is found in the following lines: ";
+	
 	private File textFile = null;
 	private String fileName = null;
 	private ArrayList<String> tasks = new ArrayList<String>();
@@ -99,6 +101,17 @@ class TextManager {
 		Collections.sort(tasks, compareCaseInsensitive);
 		saveToFile();
 		return (String.format(SORTED_MESSAGE, getFileName()));
+	}
+	
+	public String search(String content) {
+		boolean found = false;
+		String foundList = "";
+		
+		if (found == true) {
+			return ((String.format(FOUND_MESSAGE,content)) + "\n"+ (foundList.trim()));
+		} else {
+			return (NOT_FOUND_MESSAGE);
+		}
 	}
 
 	public void saveToFile() throws IOException {

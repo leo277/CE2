@@ -94,7 +94,7 @@ public class TextManagerTest {
 		
 		// testing search method
 		performCommand("Testing search",NOT_FOUND_MESSAGE,manager.search("i am the god of war"));
-		performCommand("Testing search",generateExpectedOutput(FOUND_MESSAGE,"iphone")+"2. iphone 6",manager.search("iphone"));
+		performCommand("Testing search",generateExpectedOutput(FOUND_MESSAGE,"iphone")+"\n2. iphone 6",manager.search("iphone"));
 		
 	}
 

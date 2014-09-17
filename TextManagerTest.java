@@ -27,6 +27,7 @@ public class TextManagerTest {
 	private static final String DELETE_MESSAGE = "deleted from %1$s: ";
 	private static final String INVALID_DELETE_MESSAGE = "cannot delete such element";
 	private static final String NOT_SORTED_MESSAGE = "cannot sort %1$s because it is empty";
+	private static final String SORTED_MESSAGE = "%1$s is sorted in alphabetical order";
 	
 	
 	@Before
@@ -83,8 +84,13 @@ public class TextManagerTest {
 		// testing sort by alphabet method
 		manager.clearFile();
 		performCommand("Testing sort",generateExpectedOutput(NOT_SORTED_MESSAGE, fileName),manager.sortByAlphabet());
-
-		
+		manager.add("X-men");
+		manager.add("Jurong point");
+		manager.add("iphone 6");
+		manager.add("god of war");
+		performCommand("Testing sort",generateExpectedOutput(SORTED_MESSAGE, fileName),manager.sortByAlphabet());
+		manager.sortByAlphabet();
+		performCommand("Testing sort","1. god of war\n2. iphone 6\n3. Jurong point\n4. X-men",manager.display());
 	}
 
 	@After

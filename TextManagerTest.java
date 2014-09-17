@@ -28,7 +28,8 @@ public class TextManagerTest {
 	private static final String INVALID_DELETE_MESSAGE = "cannot delete such element";
 	private static final String NOT_SORTED_MESSAGE = "cannot sort %1$s because it is empty";
 	private static final String SORTED_MESSAGE = "%1$s is sorted in alphabetical order";
-	
+	private static final String NOT_FOUND_MESSAGE = "cannot find such content";
+	//private static final String FOUND_MESSAGE = "\"%1$s\" is found in the following lines: ";
 	
 	@Before
 	public void setUp() throws Exception {
@@ -90,6 +91,10 @@ public class TextManagerTest {
 		manager.add("god of war");
 		performCommand("Testing sort",generateExpectedOutput(SORTED_MESSAGE, fileName),manager.sortByAlphabet());
 		performCommand("Testing sort","1. god of war\n2. iphone 6\n3. Jurong point\n4. X-men",manager.display());
+		
+		// testing search method
+		performCommand("Testing search",NOT_FOUND_MESSAGE,manager.search("i am the god of war"));
+		
 	}
 
 	@After

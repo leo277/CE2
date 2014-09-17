@@ -6,6 +6,7 @@
  * clear the tasks and exit the program.
  *
  * This program saves after every operation.
+ * 
  * This is also the improved version of TextBuddy. This program now
  * adds two additional functions, namely, sort and search functions.
  *  
@@ -33,7 +34,7 @@ public class TextBuddy {
 			String fileName = args[0];
 			printWelcomeMessage(fileName);
 			manager = new TextManager(fileName);
-			run();
+			executeMain();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -41,7 +42,7 @@ public class TextBuddy {
 		}
 	}
 
-	private static void run() throws IOException {
+	private static void executeMain() throws IOException {
 		String input = null;
 		do {
 			System.out.print("command: ");

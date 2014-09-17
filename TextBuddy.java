@@ -56,11 +56,11 @@ public class TextBuddy {
 	}
 
 	public static String processCommand(String input) throws IOException {
-		String[] inputs = input.split("\\s+");
-		String command = inputs[0];
-		String content = input.replaceFirst(command, "").trim();
+		String[] inputToken = input.split("\\s+");
+		String firstWord = inputToken[0];
+		String content = input.replaceFirst(firstWord, "").trim();
 
-		switch (command) {
+		switch (firstWord) {
 		case "add":
 			return manager.add(content);
 

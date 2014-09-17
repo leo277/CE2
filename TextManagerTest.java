@@ -11,6 +11,7 @@ public class TextManagerTest {
 	private static final String fileName = "test.txt";
 	private static final String ADD_MESSAGE = "added to %1$s: ";
 	private static final String CLEAR_MESSAGE = "all content deleted from %1$s";
+	private static final String EMPTY_MESSAGE = "%1$s is empty";
 
 	@Before
 	public void setUp() throws Exception {
@@ -46,12 +47,15 @@ public class TextManagerTest {
 				generateExpectedOutput(CLEAR_MESSAGE, fileName),
 				manager.clearFile());
 
+		// testing empty file display
+		performCommand("Testing displaying empty file",
+				generateExpectedOutput(EMPTY_MESSAGE, fileName),
+				manager.display());
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("Run @After");
-		// manager.clearFile();
 	}
 
 	// pseudo methods

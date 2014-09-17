@@ -90,11 +90,8 @@ class TextManager {
 	}
 
 	public String clearFile() throws IOException {
-		BufferedWriter writer = new BufferedWriter(
-				new FileWriter(getFileName()));
-		writer.write("");
-		writer.close();
 		tasks.clear();
+		saveToFile();
 		return (String.format(CLEAR_MESSAGE, getFileName()));
 	}
 

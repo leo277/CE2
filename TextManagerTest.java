@@ -13,6 +13,7 @@ public class TextManagerTest {
 	private static final String CLEAR_MESSAGE = "all content deleted from %1$s";
 	private static final String EMPTY_MESSAGE = "%1$s is empty";
 	private static final String DELETE_MESSAGE = "deleted from %1$s: ";
+	private static final String INVALID_DELETE_MESSAGE = "cannot delete such element";
 	
 	@Before
 	public void setUp() throws Exception {
@@ -58,6 +59,8 @@ public class TextManagerTest {
 		manager.add("GTA 5 is coming");
 		manager.add("Ironman is fighting superman");
 		performCommand("Testing delete",generateExpectedOutput(DELETE_MESSAGE,fileName)+"\"GTA 5 is coming\"",manager.delete("2"));
+		performCommand("Testing invalid delete",INVALID_DELETE_MESSAGE,manager.delete("0"));
+		performCommand("Testing invalid delete",INVALID_DELETE_MESSAGE,manager.delete("5"));
 	}
 
 	@After

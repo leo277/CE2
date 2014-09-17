@@ -56,19 +56,18 @@ public class TextBuddy {
 	}
 
 	public static String processCommand(String input) throws IOException {
-		String[] inputToken = input.split("\\s+");
-		String firstWord = inputToken[0];
-		String content = input.replaceFirst(firstWord, "").trim();
+		String firstWord = getFirstWord(input);
+		String request = input.replaceFirst(firstWord, "").trim();
 
 		switch (firstWord) {
 		case "add":
-			return manager.add(content);
+			return manager.add(request);
 
 		case "display":
 			return manager.display();
 
 		case "delete":
-			return manager.delete(content);
+			return manager.delete(request);
 
 		case "clear":
 			return manager.clearFile();
@@ -77,13 +76,13 @@ public class TextBuddy {
 			return manager.sortByAlphabet();
 
 		case "search":
-			return manager.search(content);
+			return manager.search(request);
 
 		case "exit":
 			manager.exit();
 
 		default:
-			return (WRONG_COMMAND_MESSAGE);
+			return WRONG_COMMAND_MESSAGE;
 		}
 
 	}
@@ -93,6 +92,11 @@ public class TextBuddy {
 			showMessage(INVALID_FILENAME_MESSAGE);
 			System.exit(0);
 		}
+	}
+
+	private static String getFirstWord(String input) {
+		String[] inputToken = input.split("\\s+");
+		return inputToken[0];
 	}
 
 	private static void printWelcomeMessage(String fileName) {

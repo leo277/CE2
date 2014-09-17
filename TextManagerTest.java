@@ -10,6 +10,7 @@ public class TextManagerTest {
 	private TextManager manager;
 	private static final String fileName = "test.txt";
 	private static final String ADD_MESSAGE = "added to %1$s: ";
+	private static final String CLEAR_MESSAGE = "all content deleted from %1$s";
 
 	@Before
 	public void setUp() throws Exception {
@@ -39,6 +40,11 @@ public class TextManagerTest {
 				"1. apple\n2. pear\n3. x-men\n4. Junit testing successful",
 				manager.display());
 		performCommand("Testing Add", "nothing to add", manager.add(""));
+
+		// testing clearFile method
+		performCommand("Testing clear",
+				generateExpectedOutput(CLEAR_MESSAGE, fileName),
+				manager.clearFile());
 
 	}
 

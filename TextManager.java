@@ -105,6 +105,7 @@ class TextManager {
 		return (String.format(DELETE_MESSAGE, getFileName(), deletedContent));
 	}
 
+	//sort the tasks alphabetically without case sensitivity
 	public String sortByAlphabet() throws IOException {
 		if (tasks.isEmpty()) {
 			return (String.format(NOT_SORTED_MESSAGE, getFileName()));
@@ -115,25 +116,25 @@ class TextManager {
 		return (String.format(SORTED_MESSAGE, getFileName()));
 	}
 
-	public String search(String content) {
+	public String search(String request) {
 		boolean found = false;
 		String foundList = "";
 
 		for (int i = 0; i < tasks.size(); i++) {
-			if (tasks.get(i).contains(content)) {
+			if (tasks.get(i).contains(request)) {
 				found = true;
 				foundList += (i + 1) + ". " + tasks.get(i) + "\n";
 			}
 		}
-
+	
 		if (found == true) {
-			return ((String.format(FOUND_MESSAGE, content)) + "\n" + (foundList
-					.trim()));
+			return ((String.format(FOUND_MESSAGE, request)) + "\n" + (foundList.trim()));
 		} else {
 			return (NOT_FOUND_MESSAGE);
 		}
 	}
 
+	//writes the content from the task Arraylist to the actual text file
 	public void saveToFile() throws IOException {
 		BufferedWriter writer = new BufferedWriter(
 				new FileWriter(getFileName()));

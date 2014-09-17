@@ -95,7 +95,8 @@ class TextManager {
 		if (tasks.isEmpty()) {
 			return (String.format(NOT_SORTED_MESSAGE, getFileName()));
 		}
-		Collections.sort(tasks);
+		MyComparator compareCaseInsensitive = new MyComparator();
+		Collections.sort(tasks, compareCaseInsensitive);
 		saveToFile();
 		return (String.format(SORTED_MESSAGE, getFileName()));
 	}

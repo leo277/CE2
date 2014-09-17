@@ -89,7 +89,7 @@ public class TextManagerTest {
 		manager.add("iphone 6");
 		manager.add("god of war");
 		performCommand("Testing sort",generateExpectedOutput(SORTED_MESSAGE, fileName),manager.sortByAlphabet());
-		performCommand("Testing sort","1. Jurong point\n2. X-men\n3. god of war\n4. iphone 6",manager.display());
+		performCommand("Testing sort","1. god of war\n2. iphone 6\n3. Jurong point\n4. X-men",manager.display());
 	}
 
 	@After

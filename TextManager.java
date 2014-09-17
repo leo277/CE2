@@ -100,9 +100,9 @@ class TextManager {
 		if (deleteIndex >= tasks.size() || deleteIndex < 0) {
 			return (INVALID_DELETE_MESSAGE);
 		}
-		String strDeleted = tasks.remove(deleteIndex);
+		String deletedContent = tasks.remove(deleteIndex);
 		saveToFile();
-		return (String.format(DELETE_MESSAGE, getFileName(), strDeleted));
+		return (String.format(DELETE_MESSAGE, getFileName(), deletedContent));
 	}
 
 	public String sortByAlphabet() throws IOException {

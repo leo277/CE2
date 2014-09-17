@@ -29,7 +29,7 @@ public class TextManagerTest {
 	private static final String NOT_SORTED_MESSAGE = "cannot sort %1$s because it is empty";
 	private static final String SORTED_MESSAGE = "%1$s is sorted in alphabetical order";
 	private static final String NOT_FOUND_MESSAGE = "cannot find such content";
-	//private static final String FOUND_MESSAGE = "\"%1$s\" is found in the following lines: ";
+	private static final String FOUND_MESSAGE = "\"%1$s\" is found in the following lines: ";
 	
 	@Before
 	public void setUp() throws Exception {
@@ -94,6 +94,7 @@ public class TextManagerTest {
 		
 		// testing search method
 		performCommand("Testing search",NOT_FOUND_MESSAGE,manager.search("i am the god of war"));
+		performCommand("Testing search",generateExpectedOutput(FOUND_MESSAGE,"iphone"),manager.search("iphone"));
 		
 	}
 

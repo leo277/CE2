@@ -1,3 +1,14 @@
+/**
+ * This is the logic class for TextBuddy. It manages all the functions 
+ * such as add, delete, clear, sort, search
+ *
+ * @project: TextBuddy ++ 
+ * @author : Zhang yongkai
+ * @matric : A0110567L
+ * @tutorialID : T11
+ * 
+ */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

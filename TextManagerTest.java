@@ -30,7 +30,7 @@ public class TextManagerTest {
 	private static final String SORTED_MESSAGE = "%1$s is sorted in alphabetical order";
 	private static final String NOT_FOUND_MESSAGE = "cannot find such content";
 	private static final String FOUND_MESSAGE = "\"%1$s\" is found in the following lines: ";
-	
+
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("Run @Before");
@@ -81,21 +81,30 @@ public class TextManagerTest {
 				manager.delete("0"));
 		performCommand("Testing invalid delete", INVALID_DELETE_MESSAGE,
 				manager.delete("5"));
-		
+
 		// testing sort by alphabet method
 		manager.clearFile();
-		performCommand("Testing sort",generateExpectedOutput(NOT_SORTED_MESSAGE, fileName),manager.sortByAlphabet());
+		performCommand("Testing sort",
+				generateExpectedOutput(NOT_SORTED_MESSAGE, fileName),
+				manager.sortByAlphabet());
 		manager.add("X-men");
 		manager.add("Jurong point");
 		manager.add("iphone 6");
 		manager.add("god of war");
-		performCommand("Testing sort",generateExpectedOutput(SORTED_MESSAGE, fileName),manager.sortByAlphabet());
-		performCommand("Testing sort","1. god of war\n2. iphone 6\n3. Jurong point\n4. X-men",manager.display());
-		
+		performCommand("Testing sort",
+				generateExpectedOutput(SORTED_MESSAGE, fileName),
+				manager.sortByAlphabet());
+		performCommand("Testing sort",
+				"1. god of war\n2. iphone 6\n3. Jurong point\n4. X-men",
+				manager.display());
+
 		// testing search method
-		performCommand("Testing search",NOT_FOUND_MESSAGE,manager.search("i am the god of war"));
-		performCommand("Testing search",generateExpectedOutput(FOUND_MESSAGE,"iphone")+"\n2. iphone 6",manager.search("iphone"));
-		
+		performCommand("Testing search", NOT_FOUND_MESSAGE,
+				manager.search("i am the god of war"));
+		performCommand("Testing search",
+				generateExpectedOutput(FOUND_MESSAGE, "iphone")
+						+ "\n2. iphone 6", manager.search("iphone"));
+
 	}
 
 	@After

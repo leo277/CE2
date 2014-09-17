@@ -84,7 +84,6 @@ public class TextBuddy {
 		default:
 			return WRONG_COMMAND_MESSAGE;
 		}
-
 	}
 
 	private static void checkArgumentValidity(String[] args) {

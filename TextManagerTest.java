@@ -26,7 +26,9 @@ public class TextManagerTest {
 	private static final String EMPTY_MESSAGE = "%1$s is empty";
 	private static final String DELETE_MESSAGE = "deleted from %1$s: ";
 	private static final String INVALID_DELETE_MESSAGE = "cannot delete such element";
-
+	private static final String NOT_SORTED_MESSAGE = "cannot sort %1$s because it is empty";
+	
+	
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("Run @Before");
@@ -77,6 +79,12 @@ public class TextManagerTest {
 				manager.delete("0"));
 		performCommand("Testing invalid delete", INVALID_DELETE_MESSAGE,
 				manager.delete("5"));
+		
+		// testing sort by alphabet method
+		manager.clearFile();
+		performCommand("Testing sort",generateExpectedOutput(NOT_SORTED_MESSAGE, fileName),manager.sortByAlphabet());
+
+		
 	}
 
 	@After

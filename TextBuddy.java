@@ -57,7 +57,7 @@ public class TextBuddy {
 
 	public static String processCommand(String input) throws IOException {
 		String firstWord = getFirstWord(input);
-		String request = input.replaceFirst(firstWord, "").trim();
+		String request = getActualRequest(firstWord, input);
 
 		switch (firstWord) {
 		case "add":
@@ -97,6 +97,10 @@ public class TextBuddy {
 	private static String getFirstWord(String input) {
 		String[] inputToken = input.split("\\s+");
 		return inputToken[0];
+	}
+
+	private static String getActualRequest(String firstWord, String input) {
+		return input.replaceFirst(firstWord, "").trim();
 	}
 
 	private static void printWelcomeMessage(String fileName) {

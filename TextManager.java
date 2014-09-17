@@ -107,6 +107,13 @@ class TextManager {
 		boolean found = false;
 		String foundList = "";
 		
+		for (int i = 0; i < tasks.size(); i++) {
+			if (tasks.get(i).contains(content)) {
+				found = true;
+				foundList += (i+1)+ ". "+ tasks.get(i) + "\n";
+			}
+		}
+				
 		if (found == true) {
 			return ((String.format(FOUND_MESSAGE,content)) + "\n"+ (foundList.trim()));
 		} else {

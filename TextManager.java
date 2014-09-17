@@ -30,21 +30,30 @@ class TextManager {
 	private static final String NOT_SORTED_MESSAGE = "cannot sort %1$s because it is empty";
 	private static final String NOT_FOUND_MESSAGE = "cannot find such content";
 	private static final String FOUND_MESSAGE = "\"%1$s\" is found in the following lines: ";
-	
+
+	// class attributes
 	private File textFile = null;
 	private String fileName = null;
 	private ArrayList<String> tasks = new ArrayList<String>();
 
 	// constructor
-
 	public TextManager(String rawFileName) throws IOException {
 		fileName = rawFileName;
 		textFile = new File(fileName);
 		textFile.createNewFile();
-		readFile(getFileName());
+		initiateFile(getFileName());
 	}
 
-	public void readFile(String fileName) throws IOException {
+	// Accessors
+	public String getFileName() {
+		return this.fileName;
+	}
+	
+	/* this method is to copy the content of the text file to the TextManager 
+	 * when the TextManager class is initiated. 
+	 */
+	
+	public void initiateFile(String fileName) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(fileName));
 		String currLine = reader.readLine();
 		while (currLine != null) {
@@ -52,11 +61,6 @@ class TextManager {
 			currLine = reader.readLine();
 		}
 		reader.close();
-	}
-
-	// Accessors
-	public String getFileName() {
-		return this.fileName;
 	}
 
 	// public methods
@@ -113,20 +117,21 @@ class TextManager {
 		saveToFile();
 		return (String.format(SORTED_MESSAGE, getFileName()));
 	}
-	
+
 	public String search(String content) {
 		boolean found = false;
 		String foundList = "";
-		
+
 		for (int i = 0; i < tasks.size(); i++) {
 			if (tasks.get(i).contains(content)) {
 				found = true;
-				foundList += (i+1)+ ". "+ tasks.get(i) + "\n";
+				foundList += (i + 1) + ". " + tasks.get(i) + "\n";
 			}
 		}
-				
+
 		if (found == true) {
-			return ((String.format(FOUND_MESSAGE,content)) + "\n"+ (foundList.trim()));
+			return ((String.format(FOUND_MESSAGE, content)) + "\n" + (foundList
+					.trim()));
 		} else {
 			return (NOT_FOUND_MESSAGE);
 		}

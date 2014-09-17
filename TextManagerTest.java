@@ -1,3 +1,15 @@
+/**
+ * This is the Junit test for the class TextManager. 
+ * pre-condition: all the input should be valid, i.e the arguments of delete, search, add is valid 
+ * because the arguments is checked in the main TextBuddy.java class. 
+ * 
+ * @project: TextBuddy ++ 
+ * @author : Zhang yongkai
+ * @matric : A0110567L
+ * @tutorialID : T11
+ * 
+ */
+
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -14,7 +26,7 @@ public class TextManagerTest {
 	private static final String EMPTY_MESSAGE = "%1$s is empty";
 	private static final String DELETE_MESSAGE = "deleted from %1$s: ";
 	private static final String INVALID_DELETE_MESSAGE = "cannot delete such element";
-	
+
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("Run @Before");
@@ -53,14 +65,18 @@ public class TextManagerTest {
 		performCommand("Testing displaying empty file",
 				generateExpectedOutput(EMPTY_MESSAGE, fileName),
 				manager.display());
-		
+
 		// testing delete method
 		manager.add("marvel vs capcom 3");
 		manager.add("GTA 5 is coming");
 		manager.add("Ironman is fighting superman");
-		performCommand("Testing delete",generateExpectedOutput(DELETE_MESSAGE,fileName)+"\"GTA 5 is coming\"",manager.delete("2"));
-		performCommand("Testing invalid delete",INVALID_DELETE_MESSAGE,manager.delete("0"));
-		performCommand("Testing invalid delete",INVALID_DELETE_MESSAGE,manager.delete("5"));
+		performCommand("Testing delete",
+				generateExpectedOutput(DELETE_MESSAGE, fileName)
+						+ "\"GTA 5 is coming\"", manager.delete("2"));
+		performCommand("Testing invalid delete", INVALID_DELETE_MESSAGE,
+				manager.delete("0"));
+		performCommand("Testing invalid delete", INVALID_DELETE_MESSAGE,
+				manager.delete("5"));
 	}
 
 	@After
